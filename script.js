@@ -566,4 +566,28 @@
   }
 
   init();
+// Ensure your PDF download button matches your HTML ID or triggers this function
+const downloadBtn = document.getElementById('downloadPdfBtn'); // Change 'downloadPdfBtn' to your actual button's ID if different
+
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', function () {
+        // Targets the exact ID 'invoicePreview' from your index.html
+        const element = document.getElementById('invoicePreview'); 
+
+        const options = {
+            margin:       10,
+            filename:     'invoice.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, // Fixes blank PDF exports caused by uploaded images/logos
+                letterRendering: true 
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Generates and downloads the PDF safely from the preview element
+        html2pdf().from(element).set(options).save();
+    });
+}
 })();
