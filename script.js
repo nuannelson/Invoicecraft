@@ -484,7 +484,9 @@
   }
 
 // ---------- PDF export ----------
-  el.downloadPdfBtn.addEventListener("click", () => {
+  el.downloadPdfBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       window.print();
   });
 
