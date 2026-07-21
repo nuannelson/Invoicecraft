@@ -566,11 +566,10 @@
   }
 
   init();
-// Replace html2pdf with the browser's native print-to-PDF engine
-  const downloadBtn = document.getElementById('downloadPdfBtn');
+const downloadBtn = document.getElementById('downloadPdfBtn');
   if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
-          // Triggers the browser print window where you can select "Save as PDF"
+          // Triggers the exact same save/print popup that worked for you!
           window.print();
       });
   }
