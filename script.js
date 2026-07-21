@@ -483,18 +483,9 @@
     return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
   }
 
-  // ---------------- PDF export ----------------
+// ---------- PDF export ----------
   el.downloadPdfBtn.addEventListener("click", () => {
-    const filename = `${state.invoiceNumber || "invoice"}.pdf`;
-    const opt = {
-      margin: 0,
-      filename,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      pagebreak: { mode: ["avoid-all", "css", "legacy"] }
-    };
-    html2pdf().set(opt).from(el.invoicePreview).save();
+      window.print();
   });
 
   // ---------------- print ----------------
@@ -566,11 +557,5 @@
   }
 
   init();
-const downloadBtn = document.getElementById('downloadPdfBtn');
-  if (downloadBtn) {
-      downloadBtn.addEventListener('click', function () {
-          // Triggers the exact same save/print popup that worked for you!
-          window.print();
-      });
-  }
+
 })();
