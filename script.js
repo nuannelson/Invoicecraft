@@ -566,27 +566,12 @@
   }
 
   init();
-// Updated PDF download fix with a slight render delay
+// Replace html2pdf with the browser's native print-to-PDF engine
   const downloadBtn = document.getElementById('downloadPdfBtn');
   if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
-          const element = document.getElementById('invoicePreview'); 
-          
-          const options = {
-              margin: 10,
-              filename: 'invoice.pdf',
-              image: { type: 'jpeg', quality: 0.98 },
-              html2canvas: { 
-                  scale: 2, 
-                  useCORS: true, 
-                  letterRendering: true 
-              },
-              jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-          };
-
-          // Adds a 200-millisecond delay so the invoice content renders fully before export
-          setTimeout(() => {
-              html2pdf().from(element).set(options).save();
-          }, 200);
+          // Triggers the browser print window where you can select "Save as PDF"
+          window.print();
       });
-  }})();
+  }
+})();
