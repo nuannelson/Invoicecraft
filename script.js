@@ -483,12 +483,12 @@
     return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
   }
 
-// ---------- PDF export ----------
-  el.downloadPdfBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+ // ---------- PDF export ----------
+  el.downloadPdfBtn.onclick = function(e) {
+      if (e) e.stopImmediatePropagation();
       window.print();
-  });
+      return false;
+  };
 
   // ---------------- print ----------------
   el.printBtn.addEventListener("click", () => window.print());
